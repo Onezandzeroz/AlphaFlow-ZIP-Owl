@@ -178,7 +178,6 @@ export function HermesSettings({ user }: HermesSettingsProps) {
                     Enable Hermes
                   </Label>
                   <ResponsiveSwitch
-                    id="hermes-enable"
                     checked={false}
                     onCheckedChange={(checked) => handleHermesToggle(checked)}
                     disabled={isToggling}
@@ -279,7 +278,6 @@ export function HermesSettings({ user }: HermesSettingsProps) {
               Enabled
             </Label>
             <ResponsiveSwitch
-              id="hermes-disable"
               checked={config?.enabled ?? false}
               onCheckedChange={(checked) => handleHermesToggle(checked)}
               disabled={isToggling}
