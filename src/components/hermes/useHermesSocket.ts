@@ -34,7 +34,6 @@ export function useHermesSocket(options: {
     const socket = io({
       query: { XTransformPort: String(servicePort) },
       transports: ['websocket', 'polling'],
-      forceNew: true,
       reconnection: true,
       reconnectionAttempts: 5,
       reconnectionDelay: 1000,
