@@ -99,20 +99,6 @@ export function HermesSettings({ user }: HermesSettingsProps) {
     }
   }, [canToggle]);
 
-  // ── Loading skeleton ──
-  if (isLoading) {
-    return (
-      <div className="space-y-4">
-        <Skeleton className="h-8 w-56" />
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
-          <Skeleton className="h-32 w-full rounded-xl" />
-          <Skeleton className="h-48 w-full rounded-xl" />
-          <Skeleton className="h-48 w-full rounded-xl" />
-        </div>
-      </div>
-    );
-  }
-
   // ── Toggle Hermes enable/disable (SuperDev only) ──
   const handleHermesToggle = useCallback(async (enabled: boolean) => {
     if (!isSuperDev || !user.activeCompanyId) return;
@@ -137,6 +123,20 @@ export function HermesSettings({ user }: HermesSettingsProps) {
       setIsToggling(false);
     }
   }, [isSuperDev, user.activeCompanyId]);
+
+  // ── Loading skeleton ──
+  if (isLoading) {
+    return (
+      <div className="space-y-4">
+        <Skeleton className="h-8 w-56" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+          <Skeleton className="h-32 w-full rounded-xl" />
+          <Skeleton className="h-48 w-full rounded-xl" />
+          <Skeleton className="h-48 w-full rounded-xl" />
+        </div>
+      </div>
+    );
+  }
 
   // ── Hermes not enabled ──
   if (!config?.enabled) {
