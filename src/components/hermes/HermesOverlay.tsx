@@ -44,8 +44,8 @@ export function HermesOverlay({
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999]" aria-label={`${agentName} AI assistant overlay`}>
-      {/* ── Floating Action Button (top-right) ── */}
-      <div className="fixed top-4 right-4 z-[10002]">
+      {/* ── Floating Action Button (top-right, overlapping banner) ── */}
+      <div className="fixed top-0 right-0 z-[10002]">
         <HermesFab
           onClick={() => setIsOpen((prev) => !prev)}
           hasNotifications={hasUnread}
@@ -53,8 +53,8 @@ export function HermesOverlay({
         />
       </div>
 
-      {/* ── Notification cards (below FAB, top-right) ── */}
-      <div className="fixed top-56 right-6 z-[10001] flex flex-col items-end">
+      {/* ── Notification cards (below owl, top-right) ── */}
+      <div className="fixed top-52 right-4 z-[10001] flex flex-col items-end">
         <AnimatePresence mode="popLayout">
           {visibleNotifications.map((notification) => (
             <HermesNotificationCard

@@ -20,31 +20,6 @@ export function HermesFab({ onClick, hasNotifications, isTyping }: HermesFabProp
       whileTap={{ scale: 0.92 }}
       aria-label="Open Hermes AI assistant"
     >
-      {/* Subtle glow ring */}
-      <motion.div
-        className="absolute inset-[-4px] rounded-full opacity-0 group-hover:opacity-100"
-        style={{
-          background: 'radial-gradient(circle, rgba(251, 191, 36, 0.25) 0%, transparent 70%)',
-        }}
-        animate={
-          hasNotifications
-            ? {
-                scale: [1, 1.4, 1],
-                opacity: [0.5, 0, 0.5],
-              }
-            : {}
-        }
-        transition={
-          hasNotifications
-            ? {
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }
-            : {}
-        }
-      />
-
       {/* Owl animation */}
       <motion.div
         className="relative"
