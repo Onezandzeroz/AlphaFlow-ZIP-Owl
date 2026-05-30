@@ -16,6 +16,9 @@ import {
   BookOpen,
   Bot,
   Sparkles,
+  Power,
+  PowerOff,
+  Building2,
 } from 'lucide-react';
 
 // ── Types ──────────────────────────────────────────────────────────
@@ -38,6 +41,7 @@ export function HermesSettings({ user }: HermesSettingsProps) {
   const [isToggling, setIsToggling] = useState(false);
 
   const canToggle = user.activeCompanyRole === 'OWNER' || user.activeCompanyRole === 'ADMIN';
+  const isSuperDev = user.isSuperDev === true;
 
   // ── Fetch Hermes config ──
   const fetchConfig = useCallback(async () => {
@@ -45,7 +49,7 @@ export function HermesSettings({ user }: HermesSettingsProps) {
       const response = await fetch('/api/hermes/config');
       if (response.ok) {
         const data = await response.json();
-        setConfig(data);
+        setConfig(data.hermesConfig ?? data);
       } else {
         toast.error('Failed to load Hermes configuration');
       }
@@ -109,8 +113,91 @@ export function HermesSettings({ user }: HermesSettingsProps) {
     );
   }
 
+  // ── Toggle Hermes enable/disable (SuperDev only) ──
+  const handleHermesToggle = useCallback(async (enabled: boolean) => {
+    if (!isSuperDev || !user.activeCompanyId) return;
+    setIsToggling(true);
+    try {
+      const response = await fetch('/api/hermes/toggle', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ companyId: user.activeCompanyId, enabled }),
+      });
+      if (response.ok) {
+        setConfig(prev => prev ? { ...prev, enabled } : prev);
+        toast.success(enabled ? 'Hermes AI has been enabled for this company' : 'Hermes AI has been disabled');
+      } else {
+        const data = await response.json();
+        toast.error(data.error || 'Failed to toggle Hermes');
+      }
+    } catch (error) {
+      console.error('Failed to toggle Hermes:', error);
+      toast.error('Failed to toggle Hermes');
+    } finally {
+      setIsToggling(false);
+    }
+  }, [isSuperDev, user.activeCompanyId]);
+
   // ── Hermes not enabled ──
   if (!config?.enabled) {
+    // SuperDev gets a toggle to enable it
+    if (isSuperDev) {
+      return (
+        <div className="space-y-4 lg:space-y-6">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-500/20">
+              <Sparkles className="h-5 w-5 text-white" />
+            </div>
+            <div>
+              <h2 className="text-lg font-semibold text-amber-700 dark:text-amber-400">
+                Hermes AI Consultant
+              </h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                AI-powered Danish accounting assistant — Platform Administration
+              </p>
+            </div>
+          </div>
+          <Card className="stat-card border-0 shadow-lg dark:border dark:border-white/5">
+            <CardContent className="py-6">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-gray-400 to-gray-500 flex items-center justify-center">
+                    <Bot className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-semibold text-gray-900 dark:text-white">
+                      Hermes AI Consultant
+                    </h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      {user.activeCompanyName || 'Current company'}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Label htmlFor="hermes-enable" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Enable Hermes
+                  </Label>
+                  <ResponsiveSwitch
+                    id="hermes-enable"
+                    checked={false}
+                    onCheckedChange={(checked) => handleHermesToggle(checked)}
+                    disabled={isToggling}
+                  />
+                </div>
+              </div>
+              {isToggling && (
+                <div className="flex items-center gap-2 text-xs text-gray-500 mt-4">
+                  <div className="h-3 w-3 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin" />
+                  Updating...
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+      );
+    }
+
+    // Regular user sees the contact admin message
     return (
       <Card className="stat-card border-0 shadow-lg dark:border dark:border-white/5">
         <CardContent className="py-8 flex flex-col items-center justify-center text-center gap-4">
@@ -171,18 +258,34 @@ export function HermesSettings({ user }: HermesSettingsProps) {
   return (
     <div className="space-y-4 lg:space-y-6">
       {/* ── Header ── */}
-      <div className="flex items-center gap-3">
-        <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-500/20">
-          <Sparkles className="h-5 w-5 text-white" />
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-500/20">
+            <Sparkles className="h-5 w-5 text-white" />
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold text-amber-700 dark:text-amber-400">
+              Hermes AI Consultant
+            </h2>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              {isSuperDev ? 'AI-powered Danish accounting assistant — Platform Administration' : 'Your AI-powered Danish accounting assistant'}
+            </p>
+          </div>
         </div>
-        <div>
-          <h2 className="text-lg font-semibold text-amber-700 dark:text-amber-400">
-            Hermes AI Consultant
-          </h2>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            Your AI-powered Danish accounting assistant
-          </p>
-        </div>
+        {/* SuperDev can disable Hermes from here too */}
+        {isSuperDev && (
+          <div className="flex items-center gap-3 shrink-0">
+            <Label htmlFor="hermes-disable" className="text-xs font-medium text-gray-500 dark:text-gray-400">
+              Enabled
+            </Label>
+            <ResponsiveSwitch
+              id="hermes-disable"
+              checked={config?.enabled ?? false}
+              onCheckedChange={(checked) => handleHermesToggle(checked)}
+              disabled={isToggling}
+            />
+          </div>
+        )}
       </div>
 
       {/* ── Status Card ── */}
