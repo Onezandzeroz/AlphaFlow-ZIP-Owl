@@ -31,7 +31,8 @@ export function useHermesSocket(options: {
 
   // Connect to the Hermes Agent mini-service
   useEffect(() => {
-    const socket = io(`/?XTransformPort=${servicePort}`, {
+    const socket = io({
+      query: { XTransformPort: String(servicePort) },
       transports: ['websocket', 'polling'],
       forceNew: true,
       reconnection: true,
