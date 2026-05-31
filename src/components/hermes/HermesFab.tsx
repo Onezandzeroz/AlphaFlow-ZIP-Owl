@@ -10,7 +10,7 @@ interface HermesFabProps {
 
 export function HermesFab({ onClick, hasNotifications, isTyping }: HermesFabProps) {
   return (
-    <div className="relative flex h-48 w-48 items-center justify-center" style={{ background: 'transparent' }}>
+    <div className="relative flex items-center justify-center" style={{ width: 195, height: 195, background: 'transparent' }}>
       <motion.div
         className="relative pointer-events-auto cursor-pointer"
         whileHover={{ scale: 1.12 }}
@@ -39,7 +39,8 @@ export function HermesFab({ onClick, hasNotifications, isTyping }: HermesFabProp
         <img
           src="/hermes-owl.webp"
           alt=""
-          className="h-42 w-auto object-contain drop-shadow-lg"
+          className="w-auto object-contain drop-shadow-lg"
+          style={{ height: 195 }}
           draggable={false}
         />
 
