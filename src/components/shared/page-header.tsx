@@ -55,7 +55,7 @@ export function PageHeader({
       </div>
 
       {/* Desktop: teal gradient banner */}
-      <div className="hidden lg:block relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0d9488] via-[#14b8a6] to-[#5eead4] dark:from-[#0f766e] dark:via-[#0d6058] dark:to-[#0d9488] p-5 sm:p-7 lg:p-8 lg:pr-60">
+      <div className="hidden lg:block relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0d9488] via-[#14b8a6] to-[#5eead4] dark:from-[#0f766e] dark:via-[#0d6058] dark:to-[#0d9488] p-5 sm:p-7 lg:p-8 lg:pr-52">
         {/* Decorative dot pattern */}
         <div
           className="absolute inset-0 opacity-[0.25]"
