@@ -26,6 +26,21 @@ alphaflow.dk, www.alphaflow.dk {
         }
     }
 
+   # ─── Hermes Agent Socket.IO Service (port 3004) ───────────────
+    # Routes requests with ?XTransformPort=3004 to the Hermes AI agent.
+    # Supports both Socket.IO polling (HTTP) and WebSocket upgrades.
+    @hermes-agent {
+        query XTransformPort=3004
+    }
+    handle @hermes-agent {
+        reverse_proxy localhost:3004 {
+            header_up Host {host}
+            header_up X-Forwarded-For {remote_host}
+            header_up X-Forwarded-Proto {scheme}
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
     # ─── TokenPay Access Service (port 3100) ───────────────────────
     # Routes requests with ?XTransformPort=3100 to the TokenPay service
     @tokenpay {
