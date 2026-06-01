@@ -527,8 +527,8 @@ export function AppLayout({
             />
           </div>
 
-          {/* Right: Menu button */}
-          <div className="flex items-center justify-end w-1/3">
+          {/* Right: Menu button (left of owl when Hermes enabled) */}
+          <div className="flex items-center justify-end w-1/3 pr-14">
             <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="sm" className="lg:hidden shrink-0">
