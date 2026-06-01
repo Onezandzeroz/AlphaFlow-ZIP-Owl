@@ -35,8 +35,9 @@ export function useHermesSocket(options: {
       query: { XTransformPort: String(servicePort) },
       transports: ['websocket', 'polling'],
       reconnection: true,
-      reconnectionAttempts: 5,
+      reconnectionAttempts: Infinity,
       reconnectionDelay: 1000,
+      reconnectionDelayMax: 10000,
       timeout: 10000,
     });
 
