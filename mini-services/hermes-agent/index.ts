@@ -45,7 +45,9 @@ const tenantSockets = new Map<string, string[]>()         // tenantId -> [socket
 
 const httpServer = createServer()
 const io = new Server(httpServer, {
-  path: '/',
+  // Use default Socket.IO path '/socket.io/' to match the client.
+  // Client connects via: /socket.io/?EIO=4&transport=...&XTransformPort=3004
+  // Caddy matches XTransformPort=3004 and proxies to this service.
   cors: {
     origin: config.corsOrigin,
     methods: ['GET', 'POST'],
