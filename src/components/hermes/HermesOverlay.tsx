@@ -54,7 +54,7 @@ export function HermesOverlay({
       </div>
 
       {/* ── Desktop: owl over banner area ── */}
-      <div className="hidden lg:block fixed right-16 top-8 z-[10002]">
+      <div className="hidden lg:block fixed right-16 top-6 z-[10002]">
         <HermesFab
           onClick={() => setIsOpen((prev) => !prev)}
           hasNotifications={hasUnread}
@@ -62,8 +62,8 @@ export function HermesOverlay({
         />
       </div>
 
-      {/* ── Notification cards (below owl, top-right) ── */}
-      <div className="fixed top-20 right-4 lg:top-52 lg:right-4 z-[10001] flex flex-col items-end">
+      {/* ── Notification cards (below owl feet, top-right) ── */}
+      <div className="fixed top-[68px] right-1 lg:top-[152px] lg:right-16 z-[10001] flex flex-col items-end">
         <AnimatePresence mode="popLayout">
           {visibleNotifications.map((notification) => (
             <HermesNotificationCard
