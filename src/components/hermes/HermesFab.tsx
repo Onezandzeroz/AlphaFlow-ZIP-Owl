@@ -50,7 +50,7 @@ export function HermesFab({ onClick, hasNotifications, isTyping }: HermesFabProp
             {[0, 1, 2].map((i) => (
               <motion.span
                 key={i}
-                className="block h-2 w-2 rounded-full bg-amber-400"
+                className="block h-2 w-2 rounded-full bg-teal-400"
                 animate={{ y: [0, -3, 0], opacity: [0.4, 1, 0.4] }}
                 transition={{ duration: 0.8, repeat: Infinity, delay: i * 0.15, ease: 'easeInOut' }}
               />

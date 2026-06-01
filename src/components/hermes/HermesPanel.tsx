@@ -78,24 +78,24 @@ export function HermesPanel({
           animate={{ opacity: 1, y: 0, scale: 1, originY: 0 }}
           exit={{ opacity: 0, y: -20, scale: 0.95, originY: 0 }}
           transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-          className="pointer-events-auto fixed top-4 right-52 z-[10000] flex flex-col overflow-hidden rounded-2xl border border-white/20 bg-white/80 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-gray-900/80
+          className="pointer-events-auto fixed top-4 right-52 z-[10000] flex flex-col overflow-hidden rounded-2xl border border-teal-200/30 bg-white/85 shadow-2xl backdrop-blur-xl dark:border-teal-800/20 dark:bg-gray-900/85
             w-[calc(100vw-24rem)] max-w-[420px] h-[70vh] max-h-[600px]
             md:w-[380px] md:h-[520px]"
         >
           {/* ── Header ── */}
-          <div className="flex items-center gap-3 border-b border-amber-100/50 bg-amber-50/60 px-4 py-3 dark:border-amber-800/30 dark:bg-amber-950/30">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 shadow-md overflow-hidden">
+          <div className="flex items-center gap-3 border-b border-teal-100/50 bg-gradient-to-r from-teal-50/80 to-cyan-50/60 px-4 py-3 dark:border-teal-800/30 dark:from-teal-950/40 dark:to-cyan-950/30">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#0d9488] to-[#0e7490] shadow-md overflow-hidden">
               <img src="/hermes-owl-static.png" alt="" className="h-7 w-auto object-contain drop-shadow-sm" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-sm font-semibold text-amber-900 dark:text-amber-100 tracking-tight">
+              <h2 className="text-sm font-semibold text-teal-900 dark:text-teal-100 tracking-tight">
                 {agentName}
               </h2>
               <div className="flex items-center gap-1.5">
                 {isConnected ? (
                   <>
-                    <Wifi className="h-3 w-3 text-green-500" />
-                    <span className="text-[11px] text-green-600 dark:text-green-400">Forbundet</span>
+                    <Wifi className="h-3 w-3 text-teal-500" />
+                    <span className="text-[11px] text-teal-600 dark:text-teal-400">Forbundet</span>
                   </>
                 ) : (
                   <>
@@ -107,7 +107,7 @@ export function HermesPanel({
             </div>
             <button
               onClick={onClose}
-              className="flex h-8 w-8 items-center justify-center rounded-lg text-amber-600/70 transition-colors hover:bg-amber-100/80 hover:text-amber-800 dark:text-amber-400/70 dark:hover:bg-amber-800/40 dark:hover:text-amber-200"
+              className="flex h-8 w-8 items-center justify-center rounded-lg text-teal-600/70 transition-colors hover:bg-teal-100/80 hover:text-teal-800 dark:text-teal-400/70 dark:hover:bg-teal-800/40 dark:hover:text-teal-200"
               aria-label="Luk chat"
             >
               <X className="h-4 w-4" />
@@ -137,7 +137,7 @@ export function HermesPanel({
                     animate={{ opacity: 1, y: 0 }}
                     className="flex items-center gap-2 px-3 py-2"
                   >
-                    <span className="text-xs italic text-amber-600/70 dark:text-amber-400/70">
+                    <span className="text-xs italic text-teal-600/70 dark:text-teal-400/70">
                       {agentName} tænker…
                     </span>
                     <ThinkingDots />
@@ -148,7 +148,7 @@ export function HermesPanel({
           </div>
 
           {/* ── Input area ── */}
-          <div className="border-t border-amber-100/50 bg-amber-50/40 p-3 dark:border-amber-800/30 dark:bg-amber-950/20">
+          <div className="border-t border-teal-100/50 bg-gradient-to-r from-teal-50/40 to-cyan-50/30 p-3 dark:border-teal-800/30 dark:from-teal-950/20 dark:to-cyan-950/20">
             <form onSubmit={handleSubmit} className="flex items-center gap-2">
               <input
                 ref={inputRef}
@@ -157,13 +157,13 @@ export function HermesPanel({
                 onKeyDown={handleKeyDown}
                 placeholder={`Spørg ${agentName}…`}
                 disabled={isDisabled}
-                className="flex-1 min-w-0 rounded-xl border border-amber-200/40 bg-white/60 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none transition-all focus:border-amber-400/60 focus:ring-2 focus:ring-amber-400/20 disabled:cursor-not-allowed disabled:opacity-50 dark:border-amber-700/30 dark:bg-gray-800/60 dark:focus:border-amber-500/60 dark:focus:ring-amber-500/20"
+                className="flex-1 min-w-0 rounded-xl border border-teal-200/40 bg-white/60 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none transition-all focus:border-teal-400/60 focus:ring-2 focus:ring-teal-400/20 disabled:cursor-not-allowed disabled:opacity-50 dark:border-teal-700/30 dark:bg-gray-800/60 dark:focus:border-teal-500/60 dark:focus:ring-teal-500/20"
                 aria-label="Chat message input"
               />
               <button
                 type="submit"
                 disabled={isDisabled || !input.trim()}
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 text-white shadow-md transition-all hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#0d9488] to-[#0e7490] text-white shadow-md transition-all hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
                 aria-label="Send message"
               >
                 <Send className="h-4 w-4" />
@@ -190,18 +190,18 @@ function MessageBubble({ message }: { message: ChatMessage }) {
       <div
         className={`relative max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed shadow-sm ${
           isHermes
-            ? 'rounded-tl-md bg-amber-50/90 text-amber-950 dark:bg-amber-900/30 dark:text-amber-50'
+            ? 'rounded-tl-md bg-gradient-to-br from-teal-50/95 to-cyan-50/80 text-teal-950 dark:from-teal-900/30 dark:to-cyan-900/20 dark:text-teal-50'
             : 'rounded-tr-md bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-100'
         }`}
       >
         {/* Hermes markdown rendering */}
         {isHermes ? (
-          <div className="prose prose-sm prose-amber max-w-none dark:prose-invert prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-pre:my-2 prose-code:rounded prose-code:bg-amber-100/60 prose-code:px-1 dark:prose-code:bg-amber-900/40">
+          <div className="prose prose-sm prose-teal max-w-none dark:prose-invert prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-pre:my-2 prose-code:rounded prose-code:bg-teal-100/60 prose-code:px-1 dark:prose-code:bg-teal-900/40">
             <ReactMarkdown>{message.content}</ReactMarkdown>
             {/* Blinking cursor for streaming */}
             {message.isStreaming && (
               <motion.span
-                className="inline-block h-4 w-0.5 bg-amber-500 ml-0.5 align-text-bottom"
+                className="inline-block h-4 w-0.5 bg-teal-500 ml-0.5 align-text-bottom"
                 animate={{ opacity: [1, 0] }}
                 transition={{ duration: 0.6, repeat: Infinity, ease: 'steps(2)' }}
               />
@@ -215,7 +215,7 @@ function MessageBubble({ message }: { message: ChatMessage }) {
         <div
           className={`mt-1 text-[10px] ${
             isHermes
-              ? 'text-amber-500/60 dark:text-amber-400/50'
+              ? 'text-teal-500/60 dark:text-teal-400/50'
               : 'text-gray-400 dark:text-gray-500'
           }`}
         >
@@ -233,7 +233,7 @@ function ThinkingDots() {
       {[0, 1, 2].map((i) => (
         <motion.span
           key={i}
-          className="block h-1.5 w-1.5 rounded-full bg-amber-400"
+          className="block h-1.5 w-1.5 rounded-full bg-teal-400"
           animate={{ y: [0, -3, 0], opacity: [0.4, 1, 0.4] }}
           transition={{
             duration: 0.7,
