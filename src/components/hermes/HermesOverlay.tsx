@@ -45,7 +45,7 @@ export function HermesOverlay({
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999]" aria-label={`${agentName} AI assistant overlay`}>
       {/* ── Floating Action Button (top-right, overlapping banner) ── */}
-      <div className="fixed right-8 top-4 z-[10002]">
+      <div className="fixed right-16 top-6 z-[10002]">
         <HermesFab
           onClick={() => setIsOpen((prev) => !prev)}
           hasNotifications={hasUnread}
