@@ -54,7 +54,7 @@ export function HermesOverlay({
       </div>
 
       {/* ── Desktop: owl over banner area ── */}
-      <div className="hidden lg:block fixed right-16 top-6 z-[10002]">
+      <div className="hidden lg:block fixed right-16 top-8 z-[10002]">
         <HermesFab
           onClick={() => setIsOpen((prev) => !prev)}
           hasNotifications={hasUnread}
