@@ -45,7 +45,7 @@ export function HermesOverlay({
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999]" aria-label={`${agentName} AI assistant overlay`}>
       {/* ── Mobile: owl in header, left of menu button ── */}
-      <div className="lg:hidden fixed right-14 top-2 z-[10002]">
+      <div className="lg:hidden fixed right-14 top-1 z-[10002]">
         <HermesFab
           onClick={() => setIsOpen((prev) => !prev)}
           hasNotifications={hasUnread}
@@ -54,7 +54,7 @@ export function HermesOverlay({
       </div>
 
       {/* ── Desktop: owl over banner area ── */}
-      <div className="hidden lg:block fixed right-16 top-6 z-[10002]">
+      <div className="hidden lg:block fixed right-16 top-7 z-[10002]">
         <HermesFab
           onClick={() => setIsOpen((prev) => !prev)}
           hasNotifications={hasUnread}
